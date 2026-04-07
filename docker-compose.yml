@@ -4,7 +4,6 @@ services:
   postgres:
     image: postgres:16
     container_name: trustlens_postgres
-    restart: unless-stopped
     environment:
       POSTGRES_USER: trustlens
       POSTGRES_PASSWORD: trustlens
@@ -15,21 +14,20 @@ services:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U trustlens"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
 
   redis:
     image: redis:7
     container_name: trustlens_redis
-    restart: unless-stopped
     ports:
       - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
 
 volumes:
   postgres_data:

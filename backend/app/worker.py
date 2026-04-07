@@ -13,7 +13,7 @@ import json
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, RandomizedSearchCV
 from sklearn.preprocessing import OrdinalEncoder
 from app.services.mitigation import _compute_basic_fairness
 from app.services.explainability import compute_global_shap
@@ -65,11 +65,11 @@ def run_full_audit_task(self, audit_id: str):
 
         df = pd.read_csv(dataset.file_path)
         
-        # Limit rows for fast Audit performance (Sample max 5k)
-        if len(df) > 5000:
-            df = df.sample(n=5000, random_state=42)
+        # Limit rows for massive Audit performance (Sample max 15k)
+        if len(df) > 15000:
+            df = df.sample(n=15000, random_state=42)
             
-        audit.progress = 30
+        audit.progress = 20
         db.commit()
         
         target_col = dataset.target_col
@@ -96,12 +96,24 @@ def run_full_audit_task(self, audit_id: str):
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        # 2. Train baseline proxy model
-        model = RandomForestClassifier(n_estimators=50, max_depth=5, random_state=42)
-        model.fit(X_train, y_train)
+        audit.progress = 35
+        db.commit()
+
+        # 2. Train baseline proxy model with Hyperparameter Tuning! (Pushing to "100 percent")
+        param_dist = {
+            'n_estimators': [50, 100, 200],
+            'max_depth': [5, 10, None],
+            'min_samples_split': [2, 5, 10]
+        }
+        
+        base_rf = RandomForestClassifier(random_state=42)
+        search = RandomizedSearchCV(base_rf, param_distributions=param_dist, n_iter=5, cv=3, random_state=42, n_jobs=-1)
+        search.fit(X_train, y_train)
+        
+        model = search.best_estimator_
         y_pred = model.predict(X_test)
         
-        audit.progress = 50
+        audit.progress = 55
         db.commit()
 
         # 3. Bias Engine Calculations

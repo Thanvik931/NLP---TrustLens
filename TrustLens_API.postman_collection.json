@@ -1,0 +1,331 @@
+{
+  "info": {
+    "name": "TrustLens AI API",
+    "description": "Complete API collection for TrustLens AI Dashboard — Up to Task 9",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "dataset_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "model_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "rule_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "audit_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🔑 Auth",
+      "item": [
+        {
+          "name": "1. Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@trustlens.ai\",\n  \"password\": \"Admin123!\",\n  \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.access_token) { pm.collectionVariables.set('token', json.access_token); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "2. Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@trustlens.ai\",\n  \"password\": \"Admin123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.access_token) { pm.collectionVariables.set('token', json.access_token); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "3. Get Current User (/me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📁 Datasets",
+      "item": [
+        {
+          "name": "4. Upload CSV Dataset",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Select your CSV file here"
+                },
+                {
+                  "key": "name",
+                  "value": "Adult Census Income",
+                  "type": "text"
+                },
+                {
+                  "key": "domain",
+                  "value": "finance",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "UCI Adult Census dataset for income prediction",
+                  "type": "text"
+                },
+                {
+                  "key": "sensitive_cols",
+                  "value": "[\"sex\",\"race\"]",
+                  "type": "text"
+                },
+                {
+                  "key": "target_col",
+                  "value": "income",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/datasets/upload",
+              "host": ["{{base_url}}"],
+              "path": ["api", "datasets", "upload"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.id) { pm.collectionVariables.set('dataset_id', json.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "5. List All Datasets",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/datasets",
+              "host": ["{{base_url}}"],
+              "path": ["api", "datasets"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🤖 ML Models",
+      "item": [
+        {
+          "name": "6. Register ML Model",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Credit Risk Predictor\",\n  \"framework\": \"scikit-learn\",\n  \"domain\": \"finance\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/models",
+              "host": ["{{base_url}}"],
+              "path": ["api", "models"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.id) { pm.collectionVariables.set('model_id', json.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "7. List All ML Models",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/models",
+              "host": ["{{base_url}}"],
+              "path": ["api", "models"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "⚖️ Governance Rules",
+      "item": [
+        {
+          "name": "8. Create Governance Rule",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model_id\": \"{{model_id}}\",\n  \"name\": \"Disparate Impact Check\",\n  \"category\": \"fairness\",\n  \"threshold\": 0.8,\n  \"metric\": \"disparate_impact\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/governance",
+              "host": ["{{base_url}}"],
+              "path": ["api", "governance"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.id) { pm.collectionVariables.set('rule_id', json.id); }"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "📊 Audits (Background Tasks)",
+      "item": [
+        {
+          "name": "9. Trigger Background Audit",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataset_id\": \"{{dataset_id}}\",\n  \"model_id\": \"{{model_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/audits/trigger",
+              "host": ["{{base_url}}"],
+              "path": ["api", "audits", "trigger"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.id) { pm.collectionVariables.set('audit_id', json.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "10. Poll Audit Status/Progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/audits/{{audit_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "audits", "{{audit_id}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

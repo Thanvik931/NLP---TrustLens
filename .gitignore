@@ -1,4 +1,4 @@
-# ── Environments & secrets ────────────────────────────────────
+# Environments & secrets ────────────────────────────────────
 .env
 .venv/
 env/
@@ -9,6 +9,14 @@ __pycache__/
 
 # ── Upload artifacts (user data) ──────────────────────────────
 backend/uploads/
+uploads/
+frontend/uploads/
+*.csv
+datasets/
+*.pdf
+reports/
+static/reports/
+backend/app/static/reports/
 
 # ── Build artifacts ───────────────────────────────────────────
 *.egg-info/

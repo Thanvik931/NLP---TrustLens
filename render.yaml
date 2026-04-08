@@ -1,17 +1,17 @@
-services:
+databases:
   # ── DATABASE ──────────────────────────────────────────────────────────────
-  - type: database
-    name: trustlens-db
+  - name: trustlens-db
     databaseName: trustlens
     user: trustlens
     plan: free
 
+redises:
   # ── REDIS (For Celery) ────────────────────────────────────────────────────
-  - type: redis
-    name: trustlens-redis
+  - name: trustlens-redis
     plan: free
     ipAllowList: [] # Only allow internal traffic
 
+services:
   # ── BACKEND (FastAPI API) ─────────────────────────────────────────────────
   - type: web
     name: trustlens-api

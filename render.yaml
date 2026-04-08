@@ -55,6 +55,14 @@ services:
         fromRedis:
           name: trustlens-redis
           property: connectionString
+      - key: CELERY_BROKER_URL
+        fromRedis:
+          name: trustlens-redis
+          property: connectionString
+      - key: CELERY_RESULT_BACKEND
+        fromRedis:
+          name: trustlens-redis
+          property: connectionString
 
   # ── FRONTEND (Streamlit Dashboard) ────────────────────────────────────────
   - type: web

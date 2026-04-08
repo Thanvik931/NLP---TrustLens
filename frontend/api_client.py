@@ -1,7 +1,8 @@
 import requests
 import streamlit as st
+import os
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 
 def get_headers():
     headers = {"Content-Type": "application/json"}

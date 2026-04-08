@@ -29,5 +29,51 @@ services:
       timeout: 5s
       retries: 5
 
+  backend:
+    build: ./backend
+    container_name: trustlens_backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://trustlens:trustlens@postgres:5432/trustlens
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    ports:
+      - "8000:8080"
+    volumes:
+      - ./backend/uploads:/app/uploads
+    command: ["sh", "-c", "alembic upgrade head && python -m uvicorn app.main:app --host 0.0.0.0 --port 8080"]
+
+  worker:
+    build: ./backend
+    container_name: trustlens_worker
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://trustlens:trustlens@postgres:5432/trustlens
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    volumes:
+      - ./backend/uploads:/app/uploads
+    command: ["sh", "-c", "python -m celery -A app.worker.celery_app worker --loglevel=info --pool=solo"]
+
+  frontend:
+    build: ./frontend
+    container_name: trustlens_frontend
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_URL=http://backend:8080
+    ports:
+      - "8501:8080"
+
 volumes:
   postgres_data:

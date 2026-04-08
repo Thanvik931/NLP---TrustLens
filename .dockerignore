@@ -1,0 +1,32 @@
+# Environments
+.env
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Datasets and Uploads
+backend/uploads/
+uploads/
+*.csv
+backend/adult_sample.csv
+
+# Reports
+*.pdf
+backend/app/static/reports/
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDEs
+.vscode/
+.idea/

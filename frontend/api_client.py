@@ -3,6 +3,8 @@ import streamlit as st
 import os
 
 BASE_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+if BASE_URL and not BASE_URL.startswith("http"):
+    BASE_URL = f"https://{BASE_URL}"
 
 def get_headers():
     headers = {"Content-Type": "application/json"}

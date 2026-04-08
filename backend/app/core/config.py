@@ -35,7 +35,7 @@ class Settings(BaseSettings):
     # App
     APP_NAME: str = "TrustLens AI"
     DEBUG: bool = False
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:8501", "http://localhost:3000"]
+    ALLOWED_ORIGINS: list[str] = ["*"]  # Flexible for production subdomains
 
 
 settings = Settings()

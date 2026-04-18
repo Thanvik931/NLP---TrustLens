@@ -1,9 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import { useAuthStore } from './store/authStore';
 import Home from './pages/Home';
-import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Simulate from './pages/Simulate';
 import Decisions from './pages/Decisions';
@@ -36,7 +34,6 @@ function App() {
         <Suspense fallback={<GlobalLoader />}>
           <BrowserRouter>
             <Routes>
-              <Route path="/login" element={<Login />} />
               
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />

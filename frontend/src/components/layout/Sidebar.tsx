@@ -20,7 +20,7 @@ export default function Sidebar() {
         <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3 shadow-lg shadow-primary/20">
           <Shield className="w-5 h-5 text-white" />
         </div>
-        <span className="font-black text-xl text-white tracking-tighter uppercase">NEURO<span className="text-primary">CLOAK</span></span>
+        <span className="font-black text-xl text-white tracking-tighter uppercase">TRUST<span className="text-primary">LENS</span></span>
       </div>
 
       <nav className="flex-1 px-4 py-8 space-y-1.5 overflow-y-auto scrollbar-none">

@@ -190,9 +190,6 @@ const HowItWorks = () => {
       </section>
       
     </div>
-ction>
-      
-    </div>
   );
 };
 

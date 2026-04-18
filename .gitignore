@@ -1,5 +1,12 @@
-# Environments & secrets ────────────────────────────────────
+# Dependencies
+node_modules/
+.npm
+package-lock.json
+
+# Environments & secrets
 .env
+.env.local
+.env.production
 .venv/
 env/
 venv/
@@ -7,7 +14,30 @@ __pycache__/
 *.py[cod]
 *.pyc
 
-# ── Upload artifacts (user data) ──────────────────────────────
+# Build artifacts
+dist/
+build/
+*.egg-info/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+coverage/
+*.log
+backend/*.log
+backend/jest_*.txt
+backend/test_*.log
+
+# Project specific
 backend/uploads/
 uploads/
 frontend/uploads/
@@ -16,20 +46,3 @@ datasets/
 *.pdf
 reports/
 static/reports/
-backend/app/static/reports/
-
-# ── Build artifacts ───────────────────────────────────────────
-*.egg-info/
-dist/
-build/
-
-# ── IDE ───────────────────────────────────────────────────────
-.vscode/
-.idea/
-
-# ── OS ────────────────────────────────────────────────────────
-.DS_Store
-Thumbs.db
-
-# ── Test artifacts ────────────────────────────────────────────
-*.pdf

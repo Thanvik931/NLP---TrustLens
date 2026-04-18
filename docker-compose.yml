@@ -1,79 +1,33 @@
-version: "3.9"
+version: '3.8'
 
 services:
-  postgres:
-    image: postgres:16
-    container_name: trustlens_postgres
-    environment:
-      POSTGRES_USER: trustlens
-      POSTGRES_PASSWORD: trustlens
-      POSTGRES_DB: trustlens
+  mongo:
+    image: mongo:7
     ports:
-      - "5433:5432"
+      - "27017:27017"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U trustlens"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      - mongo_data:/data/db
 
   redis:
     image: redis:7
-    container_name: trustlens_redis
     ports:
       - "6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
-  backend:
-    build: ./backend
-    container_name: trustlens_backend
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    environment:
-      - DATABASE_URL=postgresql://trustlens:trustlens@postgres:5432/trustlens
-      - REDIS_URL=redis://redis:6379/0
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/1
-    ports:
-      - "8000:8080"
-    volumes:
-      - ./backend/uploads:/app/uploads
-    command: ["sh", "-c", "alembic upgrade head && python -m uvicorn app.main:app --host 0.0.0.0 --port 8080"]
+  # backend:
+  #   build: ./backend
+  #   ports:
+  #     - "4000:4000"
+  #   environment:
+  #     MONGODB_URI: mongodb://mongo:27017/neurocloak
+  #     RDB_URL: redis://redis:6379
+  #   depends_on:
+  #     - mongo
+  #     - redis
 
-  worker:
-    build: ./backend
-    container_name: trustlens_worker
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    environment:
-      - DATABASE_URL=postgresql://trustlens:trustlens@postgres:5432/trustlens
-      - REDIS_URL=redis://redis:6379/0
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/1
-    volumes:
-      - ./backend/uploads:/app/uploads
-    command: ["sh", "-c", "python -m celery -A app.worker.celery_app worker --loglevel=info --pool=solo"]
-
-  frontend:
-    build: ./frontend
-    container_name: trustlens_frontend
-    depends_on:
-      - backend
-    environment:
-      - BACKEND_URL=http://backend:8080
-    ports:
-      - "8501:8080"
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:3000"
 
 volumes:
-  postgres_data:
+  mongo_data:

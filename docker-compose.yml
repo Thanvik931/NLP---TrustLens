@@ -18,7 +18,7 @@ services:
   #   ports:
   #     - "4000:4000"
   #   environment:
-  #     MONGODB_URI: mongodb://mongo:27017/neurocloak
+  #     MONGODB_URI: mongodb://mongo:27017/trustlens
   #     RDB_URL: redis://redis:6379
   #   depends_on:
   #     - mongo

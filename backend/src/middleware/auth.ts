@@ -33,7 +33,7 @@ export const authenticate = (req: AuthRequest, res: Response, next: NextFunction
       const isFirebase = (
         (decodedFirebase.iss && decodedFirebase.iss.includes('firebase')) ||
         (decodedFirebase.iss && decodedFirebase.iss.includes('google.com')) ||
-        (decodedFirebase.aud && decodedFirebase.aud.includes('neurocloak'))
+        (decodedFirebase.aud && decodedFirebase.aud.includes('trustlens'))
       );
 
       if (isFirebase) {

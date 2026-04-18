@@ -20,7 +20,7 @@ export const useLiveFeed = () => {
     });
 
     socket.on('connect', () => {
-      console.log('✅ Connected to NeuroCloak LiveFeed WebSocket');
+      console.log('✅ Connected to TrustLens LiveFeed WebSocket');
     });
 
     socket.on('new_decision', (decision) => {

@@ -16,7 +16,7 @@ describe('Simulate Endpoint', () => {
     await mongoose.connect(mongoServer.getUri());
 
     const passwordHash = await bcrypt.hash('Admin123!', 10);
-    await User.create({ email: 'admin@neurocloak.ai', passwordHash, role: 'ADMIN' });
+    await User.create({ email: 'admin@trustlens.ai', passwordHash, role: 'ADMIN' });
 
     const system = await AiSystem.create({
       name: 'TestSystem',
@@ -35,7 +35,7 @@ describe('Simulate Endpoint', () => {
     const loginRes = await request(app)
       .post('/api/auth/login')
       .send({
-        email: 'admin@neurocloak.ai',
+        email: 'admin@trustlens.ai',
         password: 'Admin123!'
       });
     token = loginRes.body.token;

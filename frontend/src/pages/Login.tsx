@@ -88,7 +88,7 @@ export default function Login() {
             <BrainCircuit className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight text-white mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
-            NeuroCloak
+            TrustLens
           </h1>
           <p className="text-slate-400 text-sm font-medium tracking-wide uppercase opacity-70">Cognitive Digital Twin Monitor</p>
         </div>

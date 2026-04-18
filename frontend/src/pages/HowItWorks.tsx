@@ -139,7 +139,7 @@ const HowItWorks = () => {
              <div className="space-y-6 flex-1">
                 <h2 className="text-4xl font-black text-white tracking-tight leading-none">MASTER-MODE <br /><span className="text-primary">TRAINING</span></h2>
                 <p className="text-slate-300 leading-relaxed text-lg font-medium">
-                  NeuroCloak isn't just a dashboard; it's an observer for high-performance ML models trained on proprietary datasets.
+                  TrustLens isn't just a dashboard; it's an observer for high-performance ML models trained on proprietary datasets.
                 </p>
                 <div className="grid grid-cols-2 gap-4 pt-4">
                    <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
@@ -164,7 +164,7 @@ const HowItWorks = () => {
                    clf.fit(X_train, y_train) <br />
                    <br />
                    <span className="text-slate-500"># Initializing CDT Observer...</span> <br />
-                   cdt = NeuroCloak.Observer(model=clf) <br />
+                   cdt = TrustLens.Observer(model=clf) <br />
                    cdt.attach_governance_rules('finance_v4')
                 </div>
                 <div className="pt-4 border-t border-white/5 flex items-center gap-2">

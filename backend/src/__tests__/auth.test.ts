@@ -13,7 +13,7 @@ describe('Auth Endpoints', () => {
     await mongoose.connect(mongoServer.getUri());
     
     const passwordHash = await bcrypt.hash('Admin123!', 10);
-    await User.create({ email: 'admin@neurocloak.ai', passwordHash, role: 'ADMIN' });
+    await User.create({ email: 'admin@trustlens.ai', passwordHash, role: 'ADMIN' });
   });
 
   afterAll(async () => {
@@ -25,7 +25,7 @@ describe('Auth Endpoints', () => {
     const response = await request(app)
       .post('/api/auth/login')
       .send({
-        email: 'admin@neurocloak.ai',
+        email: 'admin@trustlens.ai',
         password: 'Admin123!'
       });
       

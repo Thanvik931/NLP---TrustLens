@@ -39,7 +39,7 @@ export const generateAuditReport = (decision: any, userEmail: string = 'System')
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
-    doc.text("NEUROCLOAK", 14, 16);
+    doc.text("TRUSTLENS", 14, 16);
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.text("Cognitive Audit", pageWidth - 14, 16, { align: 'right' });
@@ -68,7 +68,7 @@ export const generateAuditReport = (decision: any, userEmail: string = 'System')
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(40);
   doc.setFont("helvetica", "bold");
-  doc.text("NEUROCLOAK", pageWidth / 2, 80, { align: 'center' });
+  doc.text("TRUSTLENS", pageWidth / 2, 80, { align: 'center' });
   
   doc.setTextColor(accentColor[0], accentColor[1], accentColor[2]);
   doc.setFontSize(18);
@@ -128,7 +128,7 @@ export const generateAuditReport = (decision: any, userEmail: string = 'System')
   doc.text("FINAL RESOLUTION", rightX + 30, 136, { align: 'center' });
 
   // Domain-specific description
-  let domainDescription = "AI system decision analysis — NeuroCloak cognitive audit";
+  let domainDescription = "AI system decision analysis — TrustLens cognitive audit";
   if (decision.aiSystem?.domain === 'healthcare') domainDescription = "Clinical decision support analysis — MediScan AI cognitive audit";
   if (decision.aiSystem?.domain === 'finance') domainDescription = "Financial risk assessment analysis — FinGuard AI cognitive audit";
   if (decision.aiSystem?.domain === 'defense') domainDescription = "Autonomous defense evaluation — SentryMind AI cognitive audit";
@@ -266,5 +266,5 @@ export const generateAuditReport = (decision: any, userEmail: string = 'System')
     doc.text("No bias patterns detected in this decision cycle.", pageWidth / 2, 75, { align: 'center' });
   }
 
-  doc.save(`neurocloak-audit-${decision.id.slice(0,8)}.pdf`);
+  doc.save(`trustlens-audit-${decision.id.slice(0,8)}.pdf`);
 };

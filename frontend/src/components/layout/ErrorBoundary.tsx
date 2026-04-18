@@ -38,7 +38,7 @@ class ErrorBoundary extends Component<Props, State> {
             <div className="space-y-2">
               <h1 className="text-2xl font-bold text-white tracking-tight">Something went wrong</h1>
               <p className="text-slate-400 text-sm leading-relaxed">
-                NeuroCloak encountered an unexpected UI error. The problem has been logged.
+                TrustLens encountered an unexpected UI error. The problem has been logged.
               </p>
             </div>
 

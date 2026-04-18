@@ -36,7 +36,7 @@ const Home: React.FC = () => {
           </div>
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
             <button onClick={() => navigate('/how-it-works')} className="hover:text-primary transition-colors">Technology</button>
-            <a href="https://github.com/Thanvik931/NeuroCloak" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
+            <a href="https://github.com/Thanvik931/TrustLens" target="_blank" rel="noreferrer" className="hover:text-white transition-colors flex items-center gap-2">
               <Github className="w-4 h-4" /> Open Source
             </a>
           </div>
@@ -94,7 +94,7 @@ const Home: React.FC = () => {
              <div className="relative z-10 rounded-[1.5rem] overflow-hidden border border-white/5">
                 <img 
                   src={heroVisual} 
-                  alt="NeuroCloak Dashboard" 
+                  alt="TrustLens Dashboard" 
                   className="w-full object-cover transform hover:scale-[1.02] transition-transform duration-1000"
                 />
              </div>
@@ -156,12 +156,12 @@ const Home: React.FC = () => {
             <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center font-bold text-slate-400 text-sm border border-white/10">
               N
             </div>
-            <span className="font-bold text-white tracking-widest text-xs uppercase">NeuroCloak © 2026</span>
+            <span className="font-bold text-white tracking-widest text-xs uppercase">TrustLens © 2026</span>
           </div>
           <div className="flex space-x-12 text-[10px] font-black uppercase tracking-widest">
             <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-primary transition-colors">Governance API</a>
-            <a href="https://github.com/Thanvik931/NeuroCloak" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Open Source</a>
+            <a href="https://github.com/Thanvik931/TrustLens" target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Open Source</a>
           </div>
         </div>
       </footer>

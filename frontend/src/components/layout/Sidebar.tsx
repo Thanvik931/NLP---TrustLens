@@ -47,7 +47,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="p-6 border-t border-white/5 space-y-6">
-        <a href="https://github.com/Thanvik931/NeuroCloak" target="_blank" rel="noreferrer" className="flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+        <a href="https://github.com/Thanvik931/TrustLens" target="_blank" rel="noreferrer" className="flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-white hover:bg-white/5 rounded-xl transition-all">
           <Github className="w-4 h-4 mr-3 shrink-0" />
           Project Repository
         </a>

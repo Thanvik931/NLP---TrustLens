@@ -5,9 +5,9 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBmiJZGf_pl1SExL7tjfSf2YmrWWfY_HKE",
-    authDomain: "neurocloak.firebaseapp.com",
-    projectId: "neurocloak",
-    storageBucket: "neurocloak.firebasestorage.app",
+    authDomain: "trustlens.firebaseapp.com",
+    projectId: "trustlens",
+    storageBucket: "trustlens.firebasestorage.app",
     messagingSenderId: "523423572688",
     appId: "1:523423572688:web:93eeaf63fee15e8433f4d5",
     measurementId: "G-54XLP7G13B"

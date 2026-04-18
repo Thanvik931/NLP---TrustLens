@@ -27,9 +27,9 @@ const runSeed = async () => {
     console.log('👥 Creating Users...');
     const defaultPassword = await bcrypt.hash('password123', 12);
     
-    const admin = await User.create({ email: 'admin@neurocloak.ai', passwordHash: defaultPassword, role: 'ADMIN' });
-    const auditor = await User.create({ email: 'auditor@neurocloak.ai', passwordHash: defaultPassword, role: 'AUDITOR' });
-    const viewer = await User.create({ email: 'viewer@neurocloak.ai', passwordHash: defaultPassword, role: 'VIEWER' });
+    const admin = await User.create({ email: 'admin@trustlens.ai', passwordHash: defaultPassword, role: 'ADMIN' });
+    const auditor = await User.create({ email: 'auditor@trustlens.ai', passwordHash: defaultPassword, role: 'AUDITOR' });
+    const viewer = await User.create({ email: 'viewer@trustlens.ai', passwordHash: defaultPassword, role: 'VIEWER' });
 
     // 2. Create AI Systems
     console.log('💎 Creating PERFECTION-MODE AI Systems (100% Efficiency)...');

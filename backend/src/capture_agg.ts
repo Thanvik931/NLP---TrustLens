@@ -5,7 +5,7 @@ import path from 'path';
 
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/neurocloak';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/trustlens';
 
 async function captureAggregation() {
   console.log('--- Establishing Database Connection ---');

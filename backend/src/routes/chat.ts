@@ -14,7 +14,7 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
     // Logic: Simple Keyword-based Intelligence for the "Master Trained" System
     
     if (query.includes('hello') || query.includes('hi')) {
-      response = "Hello! I am the NeuroCloak Assistant. I am connected to your master-trained AI models. How can I help you audit them today?";
+      response = "Hello! I am the TrustLens Assistant. I am connected to your master-trained AI models. How can I help you audit them today?";
     } 
     else if (query.includes('accuracy') || query.includes('performing best') || query.includes('highest')) {
       const best = await AiSystem.findOne().sort({ accuracy: -1 }).limit(1);
@@ -28,7 +28,7 @@ router.post('/', authenticate, async (req: AuthRequest, res: Response) => {
     }
     else if (query.includes('how many systems') || query.includes('models')) {
       const count = await AiSystem.countDocuments({ isActive: true });
-      response = `There are currently **${count} active AI systems** being monitored in your NeuroCloak dashboard.`;
+      response = `There are currently **${count} active AI systems** being monitored in your TrustLens dashboard.`;
     }
     else if (query.includes('credit') || query.includes('finance')) {
       const sys = await AiSystem.findOne({ name: /credit/i });

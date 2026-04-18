@@ -26,7 +26,7 @@ export const initSocket = (server: HttpServer) => {
         const isFirebase = decoded && (
           (decoded.iss && decoded.iss.includes('firebase')) ||
           (decoded.iss && decoded.iss.includes('google.com')) ||
-          (decoded.aud && decoded.aud.includes('neurocloak'))
+          (decoded.aud && decoded.aud.includes('trustlens'))
         );
 
         if (isFirebase) {

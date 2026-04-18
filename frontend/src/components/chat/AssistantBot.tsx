@@ -12,7 +12,7 @@ const AssistantBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([
-    { role: 'bot', content: 'Hello! I am the NeuroCloak AI Assistant. How can I help you with your AI system audit today?', timestamp: new Date() }
+    { role: 'bot', content: 'Hello! I am the TrustLens AI Assistant. How can I help you with your AI system audit today?', timestamp: new Date() }
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);

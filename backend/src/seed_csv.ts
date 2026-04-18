@@ -6,7 +6,7 @@ import { parse } from 'csv-parse/sync';
 import { AiSystem, Decision } from './models';
 
 // Using direct connect since connectMongoDB tries to connect without importing dotenv in scope sometimes based on node run path
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/neurocloak';
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/trustlens';
 
 async function seedData() {
   await mongoose.connect(uri);
